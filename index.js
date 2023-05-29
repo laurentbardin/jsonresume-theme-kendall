@@ -183,6 +183,7 @@ function render(resumeObject) {
                     e.endDateYear = 'Present'
                     e.endDateMonth = '';
                 }
+                e.showDate = e.endDateYear && e.startDateYear ? true : false;
                 if (e.courses) {
                     if (e.courses[0]) {
                         if (e.courses[0] != "") {
@@ -191,6 +192,7 @@ function render(resumeObject) {
                     }
                 }
             });
+            resumeObject.educationTimeline = !_.every(resumeObject.education, ['showDate', false]);
         }
     }
 

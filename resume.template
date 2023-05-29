@@ -202,11 +202,13 @@
           <!-- EDUCATION -->
           <div class="box">
             <h2><i class="fas fa-university ico"></i> Education</h2>
-            <ul id="education" class="clearfix">
+            <ul id="education" class="clearfix {{#educationTimeline}}timeline{{/educationTimeline}}">
               {{#education}}
               <li>
+                {{#showDate}}
                 <div class="year pull-left">{{startDateYear}} {{endDateYear}}</div>
-                <div class="description pull-right">
+                {{/showDate}}
+                <div class="description pull-right {{#showDate}}has-date{{/showDate}}">
                   <h3>{{institution}}</h3>
                   <div class="where">{{organization}}</div>
                   {{#url}}

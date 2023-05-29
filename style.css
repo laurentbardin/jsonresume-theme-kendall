@@ -88,7 +88,7 @@ blockquote {
   list-style: none;
 }
 #awards:before,
-#education:before {
+#education.timeline:before {
   width: 5px;
   height: 100%;
   position: absolute;
@@ -122,7 +122,7 @@ blockquote {
 }
 #awards .description,
 #education .description{
-  width: 83%;
+  width: 100%;
   display: inline-block;
   background: #eee;
   margin-bottom: 10px;
@@ -131,8 +131,12 @@ blockquote {
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
+#awards .description,
+#education.timeline .description{
+  width: 83%;
+}
 #awards .description:after,
-#education .description:after {
+#education.timeline .description.has-date:after {
   content: '';
   position: absolute;
   top: 15px;
