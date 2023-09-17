@@ -5,37 +5,78 @@ var Mustache = require('mustache');
 
 var d = new Date();
 var curyear = d.getFullYear();
+var lang = 'en';
+
+var monthNames = {
+    '01': {
+        'en': 'January',
+        'fr': 'Janvier',
+    },
+    '02': {
+        'en': 'February',
+        'fr': 'Février',
+    },
+    '03': {
+        'en': 'March',
+        'fr': 'Mars',
+    },
+    '04': {
+        'en': 'April',
+        'fr': 'Avril',
+    },
+    '05': {
+        'en': 'May',
+        'fr': 'Mai',
+    },
+    '06': {
+        'en': 'June',
+        'fr': 'Juin',
+    },
+    '07': {
+        'en': 'July',
+        'fr': 'Juillet',
+    },
+    '08': {
+        'en': 'August',
+        'fr': 'Août',
+    },
+    '09': {
+        'en': 'September',
+        'fr': 'Septembre',
+    },
+    '10': {
+        'en': 'October',
+        'fr': 'Octobre',
+    },
+    '11': {
+        'en': 'November',
+        'fr': 'Novembre',
+    },
+    '12': {
+        'en': 'December',
+        'fr': 'Décembre',
+    },
+}
 
 function getMonth(startDateStr) {
-    switch (startDateStr.substr(5,2)) {
-    case '01':
-        return "January ";
-    case '02':
-        return "February ";
-    case '03':
-        return "March ";
-    case '04':
-        return "April ";
-    case '05':
-        return "May ";
-    case '06':
-        return "June ";
-    case '07':
-        return "July ";
-    case '08':
-        return "August ";
-    case '09':
-        return "September ";
-    case '10':
-        return "October ";
-    case '11':
-        return "November ";
-    case '12':
-        return "December ";
+    var month = startDateStr.substr(5, 2);
+
+    if (monthNames[month] != undefined) {
+        if (monthNames[month][lang] != undefined) {
+            return monthNames[month][lang];
+        } else {
+            return monthNames[month]['en'];
+        }
     }
+
+    return '';
 }
 
 function render(resumeObject) {
+
+    if (resumeObject.meta.lang != undefined) {
+        lang = resumeObject.meta.lang;
+    }
 
     resumeObject.basics.capitalName = resumeObject.basics.name.toUpperCase();
     if(resumeObject.basics && resumeObject.basics.email) {
@@ -243,7 +284,7 @@ function render(resumeObject) {
 
     // If a lang is defined, try and find the corresponding template, otherwise
     // fallback to the default template file.
-    var template = 'resume.' + resumeObject.meta.lang + '.template';
+    var template = 'resume.' + lang + '.template';
 
     try {
         var theme = fs.readFileSync(__dirname + '/' + template, 'utf8');
