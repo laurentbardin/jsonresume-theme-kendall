@@ -109,7 +109,6 @@ function render(resumeObject) {
             if (w.startDate) {
                 w.startDateYear = (w.startDate || "").substr(0,4);
                 w.startDateMonth = getMonth(w.startDate || "");
-
             }
             if(w.endDate) {
                 w.endDateYear = (w.endDate || "").substr(0,4);
@@ -242,11 +241,23 @@ function render(resumeObject) {
         }
     }
 
+    // If a language is defined, try and find the corresponding template,
+    // otherwise fallback to the default template file.
+    var template = 'resume.' + resumeObject.meta.language + '.template';
+
+    try {
+        var theme = fs.readFileSync(__dirname + '/' + template, 'utf8');
+    } catch (err) {
+        if (err.code == 'ENOENT') {
+            var theme = fs.readFileSync(__dirname + '/resume.template', 'utf8');
+        } else {
+            throw err;
+        }
+    }
+
     resumeObject.css = fs.readFileSync(__dirname + "/style.css", "utf-8");
     resumeObject.printcss = fs.readFileSync(__dirname + "/print.css", "utf-8");
-    var theme = fs.readFileSync(__dirname + '/resume.template', 'utf8');
     var resumeHTML = Mustache.render(theme, resumeObject);
-
 
     return resumeHTML;
 };
