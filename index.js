@@ -241,9 +241,9 @@ function render(resumeObject) {
         }
     }
 
-    // If a language is defined, try and find the corresponding template,
-    // otherwise fallback to the default template file.
-    var template = 'resume.' + resumeObject.meta.language + '.template';
+    // If a lang is defined, try and find the corresponding template, otherwise
+    // fallback to the default template file.
+    var template = 'resume.' + resumeObject.meta.lang + '.template';
 
     try {
         var theme = fs.readFileSync(__dirname + '/' + template, 'utf8');
