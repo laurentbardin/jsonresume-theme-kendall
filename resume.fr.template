@@ -23,7 +23,7 @@
             <!-- PHOTO (AVATAR) -->
             {{#photo}}
             <div id="photo">
-                <img src="{{photo}}" alt="avatar" title="{{basics.name}}">
+              <img src="{{photo}}" alt="avatar" title="{{basics.name}}">
             </div>
             {{/photo}}
             <div id="text-header" {{^photo}}style="margin-top: 90px;"{{/photo}}>
@@ -37,7 +37,7 @@
           {{#basics.summary}}
           <!-- ABOUT ME -->
           <div class="box">
-            <h2><i class="fas fa-user ico"></i> Présentation
+            <h2><i class="fas fa-user ico"></i> Présentation</h2>
             <p>{{{basics.summary}}}</p>
           </div>
           {{/basics.summary}}
